@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Installing WordPress on Heroku &amp; AWS</title>
+
+		<meta name="description" content="How to install WordPress, create plugins, and create themes!">
+		<meta name="author" content="Travis Hoglund">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="assets/css/reveal.css">
+		<link rel="stylesheet" href="assets/css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="assets/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'assets/css/print/pdf.css' : 'assets/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="assets/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<!-- Installation -->
+				<section data-background="assets/images/wordpress_repeat.png" data-background-repeat="repeat" data-background-size="80px">
+					<h1>WORDPRESS</h1>
+					<h3>Installation, Themes, &amp; Plugins</h3>
+					<p>
+						<small>Created by <a href="http://www.travishoglund.com">Travis Hoglund</a> / <a href="http://twitter.com/thoglund">@thoglund</a></small>
+					</p>
+				</section>
+
+				<section style="text-align: left;"  data-background="#528B8B">
+					<h1>About Me</h1>
+					<ul>
+						<li class="fragment">I live in New Richmond, WI</li>
+						<li class="fragment">I work remotely for a company based out of PA</li>
+						<li class="fragment">I create custom WP themes and plugins for B2B clients</li>
+					</ul>
+				</section>
+
+				<section style="text-align: left;"  data-background="#458B74">
+					<h2>Getting Started</h2>
+					<p>
+						Before diving right into WordPress, we need to ensure that we have a local environment that can run PHP &amp; MySQL.
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>Local Environment</h2>
+					<p>
+						<img style="width: 180px; max-width: 100%;" src="assets/images/mamp.png" alt="MAMP Logo" />
+					</p>
+					<p>
+						MAMP is free and available for both OS X &amp; Windows. <a href="https://www.mamp.info/en/" target="_blank">Download MAMP</a>, and install it with all of the default&nbsp;options.
+					</p>
+					<p class="fragment">
+							Once installed, MAMP project folders should be accessible at <a href="http://localhost:8888" target="_blank">http://localhost:8888</a>.
+					</p>
+				</section>
+				<section style="text-align: left;"  data-background="#458B74">
+					<h2>Local Database</h2>
+					<p>
+						<img src="assets/images/phpmyadmin.png" alt="PhpMyAdmin Logo" />
+					</p>
+					<p>
+						Depending how your local environment is setup, you should be able to access&nbsp;phpMyAdmin&nbsp;at <a href="http://localhost:8888/phpmyadmin" target="_blank">http://localhost:8888/phpmyadmin</a>
+					</p>
+				</section>
+				<section style="text-align: left;" data-background="#458B74">
+						<h2>Creating our Database</h2>
+						<p>
+							Click on Databases in the top left, then create&nbsp;one.<br />
+							<img src="assets/images/phpmyadmin_create.png" alt="" />
+						</p>
+						<p>
+							For reference, the default user/pass for MAMP is&nbsp;root/root.
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+						<h2>Downloading WordPress</h2>
+						<p>
+							<img style="width: 350px; max-width: 100%;" src="assets/images/wordpress.jpg" alt="WordPress logo" />
+						</p>
+						<p>
+							To download a copy of WordPress, we head over to <a href="https://wordpress.org/download/" target="_blank">WordPress.org</a> and grab the latest&nbsp;version.
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+						<h2>Creating our Folder</h2>
+						<p>
+							Once downloaded, we unzip our file into our local htdocs&nbsp;directory <br /><span style="color: #42affa;">(C:/MAMP/htdocs), <br />(Applications/MAMP/htdocs),&nbsp;etc.</span><br /> Rename the wordpress folder to whatever your project should&nbsp;be&nbsp;named.
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+						<h2>Create our WP config&nbsp;file</h2>
+						<p>
+							<img src="assets/images/wordpress_config.png" alt="WordPress Config" />
+						</p>
+						<p>
+							Copy the wp-config-sample.php file and name <br />it&nbsp;wp-config.php
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+						<h2>Edit our WP config&nbsp;file</h2>
+						<p>
+							Replace the fields in the file with the below with your local&nbsp;information:
+						</p>
+						<p>
+							<pre><code data-trim contenteditable>
+/** The name of the database for WordPress */
+define('DB_NAME', '');
+
+/** MySQL database username */
+define('DB_USER', '');
+
+/** MySQL database password */
+define('DB_PASSWORD', '');
+
+/** MySQL hostname */
+define('DB_HOST', '');
+							</code></pre>
+						</p>
+				</section>
+
+				<section style="text-align: left;"  data-background="#458B74">
+					<h2>WP is ready to install!</h2>
+					<p>
+						Navigate to <a href="http://localhost:8888" target="_blank">http://localhost:8888/projectfolder</a>.
+					</p>
+					<p>
+						WordPress will ask for a site title, admin username, admin password, &amp; admin&nbsp;email.
+					</p>
+				</section>
+
+				<section style="text-align: left;"  data-background="#458B74">
+					<h2>WordPress is installed!</h2>
+					<p>
+						The WordPress front-end should be available at <a href="http://localhost:8888" target="_blank">http://localhost:8888/projectfolder</a>
+					</p>
+					<p>
+						The WordPress back-end should be available at <a href="http://localhost:8888" target="_blank">http://localhost:8888/projectfolder/wp-admin</a>
+					</p>
+				</section>
+
+				<section style="text-align: left;" >
+					<h2>Tracking changes</h2>
+					<p>
+						<img src="assets/images/git.jpg" alt="GIT Logo" />
+					</p>
+					<p>
+							GIT is a version control system that allows you to track changes in your code in case you ever need to rollback something that you may have incorrectly&nbsp;changed.
+					</p>
+				</section>
+
+				<section style="text-align: left;" >
+					<h2>Download GIT</h2>
+					<p>
+						 Download <a href="http://git-scm.com/downloads" target="_blank">GIT</a>, install it, and open your terminal/command prompt.  Navigate to your project folder and run:
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+git init
+git add .
+git commit -m "Our First Git Commit"
+						</code></pre>
+					</p>
+					<p class="fragment">
+						For more info on GIT and it's capabilities, please see Josh Crawmer's <a href="https://github.com/wisconsinwebdevelopment/gitSlideshow" target="_blank">GIT presentation</a> from our first meetup.
+					</p>
+				</section>
+
+				<!-- Themes -->
+				<section style="text-align: left;"  data-background="#6460A2">
+						<h2>WordPress Themes</h2>
+						<p>
+							WordPress themes are templates that allow us to create awesome designs without modifying any core&nbsp;WP&nbsp;code.
+						</p>
+						<p class="fragment">
+							By default, WP has 3 themes installed - twentyfifteen, twentyfourteen, and&nbsp;twentythirteen.
+						</p>
+				</section>
+
+				<section style="text-align: left;"  data-background="#A2CD5A">
+						<h2>Installing New Themes</h2>
+						<p>
+							WordPress has a lot of free themes available in the admin interface. In your WP dashboard, select <br />Appearance->Themes.
+						</p>
+						<p class="fragment">
+							Once the page loads, click Add New (near the top of the page).  All of these themes are&nbsp;free.
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+						<h2>What about a custom theme?</h2>
+						<p>
+							Lets do it! WordPress needs two files:
+						</p>
+						<ul>
+							<li class="fragment" style="color: #A2CD5A">index.php (process page requests)</li>
+							<li class="fragment" style="color: #A2CD5A">style.css (WP identifier with commenting)</li>
+						</ul>
+						<p>
+							<pre class="fragment"><code data-trim contenteditable>
+/*
+Theme Name: Meetup Custom Theme
+*/
+							</code></pre>
+						</p>
+						<p class="fragment">
+							Other fields *should* be added to the comment as well like author info, licensing,&nbsp;etc.
+						</p>
+				</section>
+
+				<section style="text-align: left;" >
+					<h2>Creating our theme</h2>
+					<p>
+						Create a folder with your theme name inside <span style="color: #A2CD5A">wp-content/themes/</span>.
+					</p>
+					<p class="fragment">
+						Create a blank <span style="color: #A2CD5A">index.php</span> file, and a <span style="color: #A2CD5A">style.css</span> file with the comment from the previous&nbsp;slide.
+					</p>
+					<p class="fragment">
+						In the WP dashboard, we can now activate our theme!
+					</p>
+				</section>
+
+				<section style="text-align: left;" >
+					<h2>Filling out our theme</h2>
+					<p>
+						We have created the bare minimum for a theme to be activated, but WP wants more.  Here is a list of what it wants&nbsp;and&nbsp;why.
+					</p>
+					<ul style="font-size: .80em; color: #A2CD5A">
+						<li class="fragment">style.css - the theme identifier</li>
+						<li class="fragment">index.php - the fallback request file</li>
+						<li class="fragment">header.php - the template file for our header</li>
+						<li class="fragment">page.php - the template file for our pages</li>
+						<li class="fragment">single.php - the template file for our posts</li>
+						<li class="fragment">footer.php - the template file for our footer</li>
+						<li class="fragment">functions.php - our custom hooks/actions go here</li>
+					</ul>
+					<p style="font-size: .80em;" class="fragment">
+						Others include 404.php, archive.php, search.php, searchform.php, comments.php, sidebar.php, and custom&nbsp;templates.
+					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Blank Theme</h2>
+					<p>
+						I created a <a href="assets/meetup_theme.zip" target="_blank">blank</a> theme for this presentation that we will be using and&nbsp;referencing.
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>header.php</h2>
+					<p>
+						This file is referenced by using the WP function <span style="color: #A2CD5A">get_header();</span> in our template files.
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;?php the_title(); ?&gt;&lt;/title&gt;
+    &lt;?php wp_head(); ?&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;?php wp_nav_menu(); ?&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>sidebar.php</h2>
+					<p>
+						This file is referenced by using the WP function <span style="color: #A2CD5A">get_sidebar();</span> in our template files.
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+This is our sidebar content
+						</code></pre>
+					</p>
+				</section>
+
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>footer.php</h2>
+					<p>
+						This file is referenced by using the WP function <span style="color: #A2CD5A">get_footer();</span> in our template files.
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+&lt;?php wp_footer(); ?&gt;
+&lt;body&gt;
+&lt;/html&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>page.php</h2>
+					<p>
+						The page.php file is the template that WP loads when accessing a page.  An example of our very basic template is:
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+&lt;?php
+get_header(); ?&gt;
+
+<div class="page-wrapper">
+  <div class="content">
+    <div class="title">&lt;?php the_title(); ?&gt;</div>
+    <div class="page-content">
+      &lt;?php the_content(); ?&gt;
+    </div>
+  </div>
+  <div class="sidebar">
+    &lt;?php get_sidebar(); ?&gt;
+  </div>
+  <div class="clear"></div>
+</div>
+
+&lt;?php
+get_footer(); ?&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>single.php</h2>
+					<p>
+						The single.php file is the template that WP loads when accessing a post.  An example of our very basic template is:
+					</p>
+					<p class="fragment">
+						<pre><code data-trim contenteditable>
+&lt;?php
+get_header(); ?&gt;
+
+<div class="post-wrapper">
+  <div class="content">
+    <div class="title">&lt;?php the_title(); ?&gt;</div>
+    <div class="post-content">
+      &lt;?php the_content(); ?&gt;
+    </div>
+  </div>
+  <div class="sidebar">
+    &lt;?php get_sidebar(); ?&gt;
+  </div>
+  <div class="clear"></div>
+</div>
+
+&lt;?php
+get_footer(); ?&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#004B97">
+					<h2>Custom Page Templates</h2>
+					<p>
+						I like to name my templates [template-example.php], where example represents what the template should be called.  In your theme folder, create template-home.php with the following content:
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+&lt;?php
+/*
+Template Name: Home
+*/
+get_header(); ?&gt;
+
+<div class="page-wrapper">
+  <div class="home-content">
+    Homepage Template Loaded&lt;br /&gt;
+    &lt;?php the_title(); ?&gt;
+  </div>
+  <div class="clear"></div>
+</div>
+
+&lt;?php
+get_footer(); ?&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Linking Homepage to the Template</h2>
+					<p>
+						From your WP dashboard, select the page you want to have the custom template.  In the right sidebar, you will see "Home" as an option, it's that&nbsp;simple.
+					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Questions on Themes?</h2>
+					<p>
+					  I want to open the floor to any questions that people might have about themes, then we will move onto plugins.
+					</p>
+				</section>
+
+				<!-- Plugins -->
+
+				<section style="text-align: left;" data-background="#53868B">
+					<h2>Plugins</h2>
+					<p>
+						Plugins are a lot more simple than they sound.  A plugin is just a collection of actions/hooks that can control WordPress and add functionality without modifying the&nbsp;WP&nbsp;core.
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#53868B">
+					<h2>What is a Plugin?</h2>
+					<p>
+						In the meetup theme I have created, you will notice a <span style="color: #A2CD5A">functions.php</span> file that I skipped over earlier.  This is where you can put simple custom hooks/actions.
+					</p>
+					<p class="fragment">
+						If you are creating extensible code, you will want to transform this into a plugin that others can use.
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#53868B">
+					<h2>Creating a Plugin?</h2>
+					<p>
+						To create our own plugin, we create a custom folder in the <span style="color: #A2CD5A">wp-content/plugins</span> folder.  We then need a single php file that contains a comment:
+					</p>
+					<p>
+						<pre><code data-trim contenteditable>
+&lt;?php
+/*
+Plugin Name: Meetup Title Override
+Description: This plugin overrides the front page title
+*/
+
+function meetup_override_title( $title, $id = null ) {
+
+    if ( is_front_page() ) {
+        return '** Meetup Title Override Homepage Only **';
+    }
+
+    return $title;
+}
+add_filter( 'the_title', 'meetup_override_title', 10, 2 );
+
+?&gt;
+						</code></pre>
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#53868B">
+					<h2>Activating our Plugin</h2>
+					<p>
+						Our plugin is created, now it will show up in the WP dashboard under Plugins.  Let's activate it, and it should override the homepage&nbsp;title.
+					</p>
+				</section>
+
+				<section style="text-align: left;" data-background="#53868B">
+					<h2>What else can plugins do?</h2>
+					<p>
+					  Plugins can be as simple as overriding a title, to building a custom E-Commerce cart system that links to Authorize.NET, Stripe, and Paypal for&nbsp;users.
+					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Questions on Plugins?</h2>
+					<p>
+						I want to open the floor to any questions that people might have about plugins.
+					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>What's Next?</h2>
+					<p>
+						This presentation just scratched the surface of what WP can do.  Things to cover in the future are custom taxonomies, custom post types, custom actions/hooks for plugin developers,&nbsp;etc.
+					</p>
+				</section>
+
+				<!-- End -->
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						If you have any questions or suggestions, you can reach out on Twitter <a href="https://www.twitter.com/thoglund" target="_blank">@thoglund</a> or message me on the Meetup&nbsp;website.
+					</p>
+					<p>
+						This presentation will be uploaded to our Meetup's Github account.  I will have Josh send out a link through the Meetup site.
+					</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="assets/lib/js/head.min.js"></script>
+		<script src="assets/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'assets/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'assets/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'assets/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'assets/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'assets/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'assets/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
